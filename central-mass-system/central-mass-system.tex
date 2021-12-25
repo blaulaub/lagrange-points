@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}  % makes ligatures copy-pasteable
+
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+
+\title{System mit Zentralmasse}
+\author{Christian Fuchs}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Bewegungsgleichung für ein System mit einer einzigen dominanten Zentralmasse in einem Bezugssystem, welches mit konstanter Winkelgeschwindigkeit um die Zentralmasse rotiert.
+\end{abstract}
+
+\tableofcontents
+
+\section{Grundgleichungen}
+
+Beschleunigung eines Massepunktes um eine unbewegliche Zentralmasse $M$ im Koordinatenursprung $\vec{0}$ mit Gravitationskonstante $\gamma$:
+
+\begin{equation}
+\vec{\ddot{x}} = - \frac{\vec{x}}{\left| \vec{x} \right|^3} \gamma M
+\end{equation}
+
+Beziehung zwischen zueinander rotierenden Systemen $\vec{x}$ und $\vec{x'}$ mit gemeinsamem Ursprung $\vec{0} = \vec{0'}$ und mit Rotationsvektor $\vec{\omega} = \left( \begin{matrix} 0 & 0 & \omega \end{matrix} \right)$:
+
+\begin{eqnarray}
+\mathcal{D} &= \left(
+\begin{matrix}
+  \cos \omega t & \sin \omega t & 0 \\
+ -\sin \omega t & \cos \omega t & 0 \\
+  0             & 0             & 1
+\end{matrix}
+\right)
+\end{eqnarray}
+
+
+
+\end{document}
