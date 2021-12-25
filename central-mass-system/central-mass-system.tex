@@ -18,28 +18,84 @@
 Bewegungsgleichung für ein System mit einer einzigen dominanten Zentralmasse in einem Bezugssystem, welches mit konstanter Winkelgeschwindigkeit um die Zentralmasse rotiert.
 \end{abstract}
 
-\tableofcontents
-
 \section{Grundgleichungen}
 
-Beschleunigung eines Massepunktes um eine unbewegliche Zentralmasse $M$ im Koordinatenursprung $\vec{0}$ mit Gravitationskonstante $\gamma$:
+Beschleunigung eines Massepunktes $\vec{x} = \left( \begin{matrix} x & y & z \end{matrix} \right)$ um eine unbewegliche Zentralmasse $M$ im Koordinatenursprung $\vec{0}$ mit Gravitationskonstante $\gamma$:
 
 \begin{equation}
-\vec{\ddot{x}} = - \frac{\vec{x}}{\left| \vec{x} \right|^3} \gamma M
+\vec{\ddot{x}} = - \frac{\vec{x}}{\left| \vec{x} \right|^3} \gamma M \label{eq:basic}
 \end{equation}
 
-Beziehung zwischen zueinander rotierenden Systemen $\vec{x}$ und $\vec{x'}$ mit gemeinsamem Ursprung $\vec{0} = \vec{0'}$ und mit Rotationsvektor $\vec{\omega} = \left( \begin{matrix} 0 & 0 & \omega \end{matrix} \right)$:
+Beziehung zwischen zueinander rotierenden Systemen $\vec{x}$ und $\vec{x}'$ mit gemeinsamem Ursprung $\vec{0} = \vec{0}'$ und mit Rotationsvektor $\vec{\omega} = \left( \begin{matrix} 0 & 0 & \omega \end{matrix} \right)$:
 
 \begin{eqnarray}
-\mathcal{D} &= \left(
+\mathcal{D} &=& \left(
 \begin{matrix}
-  \cos \omega t & \sin \omega t & 0 \\
- -\sin \omega t & \cos \omega t & 0 \\
-  0             & 0             & 1
+  \cos \omega t & -\sin \omega t & 0 \\
+  \sin \omega t &  \cos \omega t & 0 \\
+  0             &  0             & 1
 \end{matrix}
-\right)
+\right) \nonumber \\
+\vec{x}  &=& \mathcal{D} \vec{x}' \label{eq:xtoxprime}
 \end{eqnarray}
 
+\noindent und umgekehrt mit dem Rotationsvektor $\vec{\omega}' = \left( \begin{matrix} 0 & 0 & -\omega \end{matrix} \right)$:
 
+\begin{eqnarray}
+\vec{x}'  &=& \mathcal{D}^{-1} \vec{x} \nonumber \\
+\mathcal{D}^{-1} &=& \left(
+\begin{matrix}
+  \cos \omega t &  \sin \omega t & 0 \\
+ -\sin \omega t &  \cos \omega t & 0 \\
+  0             &  0             & 1
+\end{matrix}
+\right) \nonumber
+\end{eqnarray}
+
+\section{Übertragung ins rotierende System}
+
+Die Gleichheit $\left| \vec{x} \right| = \left| \vec{x}' \right|$ ergibt sich wegen Gleichung~\ref{eq:xtoxprime} und wird nicht näher beschrieben.
+
+Die linke Seite von Gleichung~\ref{eq:basic} ändert sich mit Gleichung~\ref{eq:xtoxprime} wie folgt:
+
+\begin{eqnarray}
+\vec{\ddot{x}}
+  &=& \frac{\partial^2}{\partial t^2} \vec{x} \nonumber \\
+  &=& \frac{\partial}{\partial t} \frac{\partial}{\partial t} \vec{x} \nonumber \\
+  &=& \frac{\partial}{\partial t} \frac{\partial}{\partial t} \left( \mathcal{D} \vec{x}' \right) \nonumber \\
+  &=& \frac{\partial}{\partial t} \left( \frac{\partial\mathcal{D}}{\partial t} \vec{x}' + \mathcal{D} \frac{\partial\vec{x}'}{\partial t} \right) \nonumber \\
+  &=& \frac{\partial^2\mathcal{D}}{\partial t^2} \vec{x}'
+     + 2 \frac{\partial\mathcal{D}}{\partial t} \frac{\partial\vec{x}'}{\partial t}
+     + \mathcal{D} \frac{\partial^2\vec{x}'}{\partial t^2} \nonumber \\
+  &=& \ddot{\mathcal{D}}\vec{x}' + 2 \dot{\mathcal{D}}\dot{\vec{x}}' + \mathcal{D}\ddot{\vec{x}}' \nonumber 
+\end{eqnarray}
+
+Die Zeitableitungen von $\mathcal{D}$ sind:
+
+\begin{eqnarray}
+\dot{\mathcal{D}} &=& \omega \left(
+\begin{matrix}
+ -\sin \omega t & -\cos \omega t & 0 \\
+  \cos \omega t & -\sin \omega t & 0 \\
+  0             &  0             & 0
+\end{matrix}
+\right) \nonumber \\
+\ddot{\mathcal{D}} &=& -\omega^2 \mathcal{D} \nonumber 
+\end{eqnarray}
+
+Damit und mit der Ersetzung verbleibender $\vec{x}$ durch $\mathcal{D}\vec{x}'$ ergibt sich als Bewegungsgleichung im Bezugssystem $\vec{x}'$:
+
+\begin{eqnarray}
+\vec{\ddot{x}} &=& - \frac{\vec{x}}{\left| \vec{x} \right|^3} \gamma M \nonumber \\
+\ddot{\mathcal{D}}\vec{x}' + 2 \dot{\mathcal{D}}\dot{\vec{x}}' + \mathcal{D}\ddot{\vec{x}}' &=& - \mathcal{D}\frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M \nonumber \\
+-\omega^2\mathcal{D}\vec{x}' + 2 \dot{\mathcal{D}}\dot{\vec{x}}' + \mathcal{D}\ddot{\vec{x}}' &=& - \mathcal{D}\frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M \nonumber \\ 
+\mathcal{D}\ddot{\vec{x}}' &=& - \mathcal{D}\frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M + \omega^2\mathcal{D}\vec{x}' - 2 \dot{\mathcal{D}}\dot{\vec{x}}' \nonumber \\
+\ddot{\vec{x}}' &=& - \frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M + \omega^2\vec{x} - 2 \left( \mathcal{D}^{-1} \dot{\mathcal{D}}\right)\dot{\vec{x}}' \nonumber \\
+\ddot{\vec{x}} &=& - \frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M + \omega^2\vec{x}' - 2 \left( \vec{\omega} \times \dot{\vec{x}}'\right) \label{eq:translated}
+\end{eqnarray}
+
+In den letzten beiden Zeilen wurde von links mit $\mathcal{D}^{-1}$ multipliziert und ausgenutzt, dass das Punktprodukt $\mathcal{D}^{-1}\dot{\mathcal{D}} \cdot \vec{v}$ gleich dem Kreuzprodukt $\vec{\omega}\times\vec{v}$ ist.
+
+$\omega^2\vec{x}'$ ist die Beschleunigung durch die Fliehkraft und $- 2 \left( \vec{\omega} \times \dot{\vec{x}}'\right)$ die Beschleuningung durch die Corioliskraft.
 
 \end{document}
