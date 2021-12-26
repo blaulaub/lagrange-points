@@ -18,15 +18,15 @@
 Bewegungsgleichung für ein System mit einer einzigen dominanten Zentralmasse in einem Bezugssystem, welches mit konstanter Winkelgeschwindigkeit um die Zentralmasse rotiert.
 \end{abstract}
 
-\section{Grundgleichungen}
+\section{Eine Zentralmasse}
 
-Beschleunigung eines Massepunktes $\vec{x} = \left( \begin{matrix} x & y & z \end{matrix} \right)$ um eine unbewegliche Zentralmasse $M$ im Koordinatenursprung $\vec{0}$ mit Gravitationskonstante $\gamma$:
+Beschleunigung eines Massepunktes $\vec{x} = \left( \begin{matrix} x & y & z \end{matrix} \right)^T$ um eine unbewegliche Zentralmasse $M$ im Koordinatenursprung $\vec{0}$ mit Gravitationskonstante $\gamma$:
 
 \begin{equation}
 \vec{\ddot{x}} = - \frac{\vec{x}}{\left| \vec{x} \right|^3} \gamma M \label{eq:basic}
 \end{equation}
 
-Beziehung zwischen zueinander rotierenden Systemen $\vec{x}$ und $\vec{x}'$ mit gemeinsamem Ursprung $\vec{0} = \vec{0}'$ und mit Rotationsvektor $\vec{\omega} = \left( \begin{matrix} 0 & 0 & \omega \end{matrix} \right)$:
+Beziehung zwischen zueinander rotierenden Systemen $\vec{x}$ und $\vec{x}'$ mit gemeinsamem Ursprung $\vec{0} = \vec{0}'$ und mit Rotationsvektor $\vec{\omega} = \left( \begin{matrix} 0 & 0 & \omega \end{matrix} \right)^T$:
 
 \begin{eqnarray}
 \mathcal{D} &=& \left(
@@ -52,7 +52,7 @@ Beziehung zwischen zueinander rotierenden Systemen $\vec{x}$ und $\vec{x}'$ mit 
 \right) \nonumber
 \end{eqnarray}
 
-\section{Übertragung ins rotierende System}
+\section{Im rotierenden Bezugssystem}
 
 Die Gleichheit $\left| \vec{x} \right| = \left| \vec{x}' \right|$ ergibt sich wegen Gleichung~\ref{eq:xtoxprime} und wird nicht näher beschrieben.
 
@@ -91,11 +91,48 @@ Damit und mit der Ersetzung verbleibender $\vec{x}$ durch $\mathcal{D}\vec{x}'$ 
 -\omega^2\mathcal{D}\vec{x}' + 2 \dot{\mathcal{D}}\dot{\vec{x}}' + \mathcal{D}\ddot{\vec{x}}' &=& - \mathcal{D}\frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M \nonumber \\ 
 \mathcal{D}\ddot{\vec{x}}' &=& - \mathcal{D}\frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M + \omega^2\mathcal{D}\vec{x}' - 2 \dot{\mathcal{D}}\dot{\vec{x}}' \nonumber \\
 \ddot{\vec{x}}' &=& - \frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M + \omega^2\vec{x} - 2 \left( \mathcal{D}^{-1} \dot{\mathcal{D}}\right)\dot{\vec{x}}' \nonumber \\
-\ddot{\vec{x}} &=& - \frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M + \omega^2\vec{x}' - 2 \left( \vec{\omega} \times \dot{\vec{x}}'\right) \label{eq:translated}
+\ddot{\vec{x}}' &=& - \frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M + \omega^2\vec{x}' - 2 \left( \vec{\omega} \times \dot{\vec{x}}'\right) \label{eq:translated}
 \end{eqnarray}
 
 In den letzten beiden Zeilen wurde von links mit $\mathcal{D}^{-1}$ multipliziert und ausgenutzt, dass das Punktprodukt $\mathcal{D}^{-1}\dot{\mathcal{D}} \cdot \vec{v}$ gleich dem Kreuzprodukt $\vec{\omega}\times\vec{v}$ ist.
 
 $\omega^2\vec{x}'$ ist die Beschleunigung durch die Fliehkraft und $- 2 \left( \vec{\omega} \times \dot{\vec{x}}'\right)$ die Beschleuningung durch die Corioliskraft.
+
+\section{Stationärer Satellit}
+
+Ein stationärer Satellit $\dot{\vec{x}}' = 0$ mit gegen $M$ vernachlässigbarer Eigenmasse ergibt sich, wenn Gravitation und Fliehkraft im Gleichgewicht sind:
+
+\begin{equation}
+\frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M = \omega^2\vec{x}' \nonumber
+\end{equation}
+
+Mit $\left| \vec{x}' \right| = r$  ergibt sich:
+
+\begin{equation}
+\gamma M = \omega^2 r^3 \label{eq:thirdLaw}
+\end{equation}
+
+\section{Mehrkörpersystem}
+
+Für mehrere Massen $m_j$ an Positionen $\vec{x}_j$ und Rotation um den Nullpunkt:
+
+\begin{equation}
+\ddot{\vec{x}}'_i = - \gamma \sum_{j \neq i} \frac{\vec{x}'_i-\vec{x}'_j}{\left| \vec{x}'_i-\vec{x}'_j \right|^3} m_j + \omega^2\vec{x}'_i - 2 \left( \vec{\omega} \times \dot{\vec{x}}'_i\right) \label{eq:generalField}
+\end{equation}
+
+\section{Im Zweikörpersystem}
+
+Für eine Zentralmasse $M$ im Nullpunkt und eine stationäre Begleitmasse $m$ am Punkt $\vec{r}' = \left( \begin{matrix} r & 0 & 0 \end{matrix} \right)^T$ mit vernachlässigbarem $m \ll M$ ergibt sich aus Gleichung~\ref{eq:generalField} als Schwerefeld:
+
+\begin{equation}
+\ddot{\vec{x}}' = - \frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M - \frac{\vec{x}'-\vec{r}'}{\left| \vec{x}' - \vec{r}' \right|^3} \gamma m + \omega^2\vec{x}'_i - 2 \left( \vec{\omega} \times \dot{\vec{x}}'_i\right)
+\label{eq:twoBodies}
+\end{equation}
+
+\noindent und es gilt Gleichung~\ref{eq:thirdLaw} für $\omega$ und $r$.
+
+\section{Lagrangepunkte}
+
+Lagrangepunkte sind die Punkte $\ddot{\vec{x}}' = \vec{0}$ der Gleichung~\ref{eq:twoBodies}.
 
 \end{document}
