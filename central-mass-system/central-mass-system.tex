@@ -120,19 +120,90 @@ Für mehrere Massen $m_j$ an Positionen $\vec{x}_j$ und Rotation um den Nullpunk
 \ddot{\vec{x}}'_i = - \gamma \sum_{j \neq i} \frac{\vec{x}'_i-\vec{x}'_j}{\left| \vec{x}'_i-\vec{x}'_j \right|^3} m_j + \omega^2\vec{x}'_i - 2 \left( \vec{\omega} \times \dot{\vec{x}}'_i\right) \label{eq:generalField}
 \end{equation}
 
-\section{Im Zweikörpersystem}
+\section{Zweikörpersystem, fixe Zentralmasse}
 
 Für eine Zentralmasse $M$ im Nullpunkt und eine stationäre Begleitmasse $m$ am Punkt $\vec{r}' = \left( \begin{matrix} r & 0 & 0 \end{matrix} \right)^T$ mit vernachlässigbarem $m \ll M$ ergibt sich aus Gleichung~\ref{eq:generalField} als Schwerefeld:
 
 \begin{equation}
-\ddot{\vec{x}}' = - \frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M - \frac{\vec{x}'-\vec{r}'}{\left| \vec{x}' - \vec{r}' \right|^3} \gamma m + \omega^2\vec{x}'_i - 2 \left( \vec{\omega} \times \dot{\vec{x}}'_i\right)
-\label{eq:twoBodies}
+\ddot{\vec{x}}' = - \frac{\vec{x}'}{\left| \vec{x}' \right|^3} \gamma M - \frac{\vec{x}'-\vec{r}'}{\left| \vec{x}' - \vec{r}' \right|^3} \gamma m + \omega^2\vec{x}' - 2 \left( \vec{\omega} \times \dot{\vec{x}}'\right)
+\label{eq:twoBodiesWrong}
 \end{equation}
 
 \noindent und es gilt Gleichung~\ref{eq:thirdLaw} für $\omega$ und $r$.
 
-\section{Lagrangepunkte}
+\subsection{Lagrangepunkte}
 
-Lagrangepunkte sind die Punkte $\ddot{\vec{x}}' = \vec{0}$ der Gleichung~\ref{eq:twoBodies}.
+Lagrangepunkte sind die Punkte $\ddot{\vec{x}}' = \vec{0}$ der Gleichung~\ref{eq:twoBodiesWrong}:
+
+\begin{eqnarray}
+\left( \begin{matrix} 0 \\ 0 \\ 0 \end{matrix} \right)
+&=&
+- \left( \begin{matrix} x' \\ y' \\ z' \end{matrix} \right)
+ \frac{\gamma M}{\left( x'^{2} + y'^{2} + z'^{2} \right)^3} \nonumber \\ &&
+- \left( \begin{matrix} x' - r \\ y' \\ z' \end{matrix} \right) \frac{\gamma m}{\left( \left(x' - r\right)^{2} + y'^{2} + z'^{2} \right)^3} \nonumber \\ &&
++ \omega^2 \left( \begin{matrix} x' \\ y' \\ z' \end{matrix} \right)
+- 2 \omega \left( \begin{matrix} -\dot{y}' \\ \dot{x}' \\ 0 \end{matrix} \right)
+\nonumber
+\end{eqnarray}
+
+\begin{eqnarray}
+&=&
+- \left( \begin{matrix} x' \\ y' \\ z' \end{matrix} \right)
+ \frac{\gamma M}{\left( x'^{2} + y'^{2} + z'^{2} \right)^3} \nonumber \\ &&
+- \left( \begin{matrix} x' - r \\ y' \\ z' \end{matrix} \right) \frac{\gamma m}{\left( \left(x' - r\right)^{2} + y'^{2} + z'^{2} \right)^3} \nonumber \\ &&
++ \left( \begin{matrix} x' \\ y' \\ z' \end{matrix} \right)
+ \frac{\gamma M}{r^3}
+- 2 \sqrt{\frac{\gamma M}{r^3}} \left( \begin{matrix} -\dot{y}' \\ \dot{x}' \\ 0 \end{matrix} \right)
+\nonumber
+\end{eqnarray}
+
+Mit Aufgliederung und Umsortierung:
+
+\begin{subequations}
+\begin{eqnarray}
+&=&
++ \left( \begin{matrix} x' \\ y' \\ z' \end{matrix} \right)
+ \frac{\gamma M}{r^3} \\
+&&
+- \left( \begin{matrix} x' \\ y' \\ z' \end{matrix} \right)
+ \frac{\gamma M}{\left( x'^{2} + y'^{2} + z'^{2} \right)^3} \\
+&&
+- \left( \begin{matrix} x' \\ y' \\ z' \end{matrix} \right) \frac{\gamma m}{\left( \left(x' - r\right)^{2} + y'^{2} + z'^{2} \right)^3} \\ 
+&&
++ \left( \begin{matrix} r \\ 0 \\ 0 \end{matrix} \right) \frac{\gamma m}{\left( \left(x' - r\right)^{2} + y'^{2} + z'^{2} \right)^3} \\ 
+&&
++ 2 \sqrt{\frac{\gamma M}{r^3}} \left( \begin{matrix} \dot{y}' \\ -\dot{x}' \\ 0 \end{matrix} \right)
+\end{eqnarray}
+\end{subequations}
+
+Offensichtlich führt die auf der Annahme $m \ll M$ basierende Fixierung der Zentralmasse im Zentrum zu keinem brauchbaren Ergebnis.
+
+\section{Zweikörpersystem}
+
+Für eine Zentralmasse $M$ am Punkt $\vec{R}' = \left( \begin{matrix} -R & 0 & 0 \end{matrix} \right)^T$ und eine stationäre Begleitmasse $m$ am Punkt $\vec{r}' = \left( \begin{matrix} r & 0 & 0 \end{matrix} \right)^T$ ergibt sich aus Gleichung~\ref{eq:generalField} als Schwerefeld:
+
+\begin{equation}
+\ddot{\vec{x}}' =
+- \frac{\vec{x}'-\vec{R}'}{\left| \vec{x}' - \vec{R}' \right|^3} \gamma M
+- \frac{\vec{x}'-\vec{r}'}{\left| \vec{x}' - \vec{r}' \right|^3} \gamma m 
++ \omega^2\vec{x}' 
+- 2 \left( \vec{\omega} \times \dot{\vec{x}}'\right)
+\label{eq:twoBodies}
+\end{equation}
+
+Durch Einsetzen ergibt sich für stationäre $\vec{\ddot{r}}=0$ und $\vec{\ddot{R}}=0$:
+
+\begin{equation}
+\frac{r+R}{\left(r+R\right)^3} \gamma M = \omega^2 r \qquad \qquad
+\frac{r+R}{\left(r+R\right)^3} \gamma m = \omega^2 R \nonumber
+\end{equation}
+
+\noindent und daraus für gegebene $M$, $m$ und $r$:
+
+\begin{eqnarray}
+R        &=& r \frac{m}{M} \nonumber \\
+\omega^2 &=& \frac{\gamma M^3}{r^3 \left(M+m\right)^2} \nonumber
+\end{eqnarray}
+
 
 \end{document}
